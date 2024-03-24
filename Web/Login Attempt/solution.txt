@@ -1,0 +1,28 @@
+go to http://3.23.56.243:9001/
+
+to see  if there is anything, I check the source code by viewing it.
+
+ok, this login page tells me this is a SQL injection and yeah the webpage title also stated it. so I just use some classic SQL injection trick.
+
+" OR "" = "
+
+
+ah it doesn't work. what should I do?
+
+Well, apparently you can't easily bypass without understand what is it inside the database. So, like everyone else I google and find something about it.
+
+I found out using SQLMap which allows us to test what type of vulnerabilities are there in that website. 
+
+by using this command:
+sqlmap -u http://3.23.56.243:9001/login.php?id=1 --dbs 
+
+Resources: 
+https://www.geeksforgeeks.org/use-sqlmap-test-website-sql-injection-vulnerability/
+
+
+
+SQL Fiddle: https://sqlfiddle.com/ 
+
+
+
+

@@ -1,0 +1,24 @@
+Find for me the number of games on the database released for the playstation in the 2000’s (2000-2009 inclusive)
+
+This challenge is really fun and require us to use SQL query language to find the specific number of games released between 2000 to 2009.
+
+so I use Microsoft SQL Server (DBMS), you can use others as well like the online SQL compilers but some of the websites not working because our lines are too much so it is better to use phpMyAdmin's SQL or Ms SQL Server like I did.
+
+
+Okay update. I can't use SQL Server because of the auto_increment error and I have the change a lot of stuffs. So I just use phpMyAdmin. Easy.
+
+and I run this query
+
+```SQL
+SELECT COUNT(DISTINCT g.game_id) AS game_count
+FROM Games g
+JOIN GamePlatforms gp ON g.game_id = gp.game_id
+JOIN Platforms p ON gp.platform_id = p.platform_id
+WHERE g.release_date BETWEEN '2000-01-01' AND '2009-12-31'
+AND p.platform_name = 'PlayStation';
+```
+
+
+copy it and you will get 42 total games. (I made one mistake because I didn't add the platform "Playstation" in but I got it whatever haha.
+
+flag: texsaw42
