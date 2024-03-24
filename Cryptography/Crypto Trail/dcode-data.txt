@@ -1,0 +1,21 @@
+ASCII to Hexadecimal:
+5a 33 4a 72 5a 6d 35 71 65 32 64 46 62 6a 46 5a 5a 6c 39 6c 53 47 46 66 63 44 42 5a 55 58 30 3d
+
+Removed space between:
+5a334a725a6d357165326446626a465a5a6c396c534746666344425a5558303d
+
+File Creator/Reader from Binary/Decimal/Hexadecimal Data (Hexadecimal Data)
+Z3JrZm5qe2dFbjFZZl9lSGFfcDBZUX0=
+
+Base 64 Decoder: 
+grkfnj{gEn1Yf_eHa_p0YQ}
+
+ROT Cipher:
+texsaw{tRa1Ls_rUn_c0LD}
+
+
+Resources:
+https://www.dcode.fr/sha256-hash
+https://www.dcode.fr/file-data
+https://www.dcode.fr/base-64-encoding
+https://www.dcode.fr/rot-cipher
