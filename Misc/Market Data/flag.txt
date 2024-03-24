@@ -1,0 +1,54 @@
+Using the same SQL data from the first misc challenge.
+
+```SQL
+SELECT SUM(od.quantity * od.subtotal) AS total_revenue
+FROM OrderDetails od
+JOIN Games g ON od.game_id = g.game_id
+JOIN Genres gn ON g.genre_id = gn.genre_id
+JOIN Orders o ON od.order_id = o.order_id
+WHERE gn.genre_name = 'Action'
+AND YEAR(o.order_date) = 2023
+AND g.game_id IN (
+    SELECT g.game_id
+    FROM Games g
+    JOIN Genres gn ON g.genre_id = gn.genre_id
+    WHERE gn.genre_name = 'Action'
+    AND YEAR(o.order_date) = 2023
+    GROUP BY g.game_id
+    ORDER BY SUM(od.quantity * od.subtotal) DESC
+    LIMIT 1 OFFSET 4 -- 5th most revenue-generating game
+);
+
+```
+
+Ah I am an economist hahaha.
+
+Okay but in all seriousness, if you are using phpMyAdmin you will encounter MariaDB error like this below
+
+#1235 - This version of MariaDB doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'
+
+
+so use this
+
+```SQL
+WITH RankedGames AS (
+    SELECT g.game_id, SUM(od.quantity * od.subtotal) AS revenue
+    FROM OrderDetails od
+    JOIN Games g ON od.game_id = g.game_id
+    JOIN Genres gn ON g.genre_id = gn.genre_id
+    JOIN Orders o ON od.order_id = o.order_id
+    WHERE gn.genre_name = 'Action'
+    AND YEAR(o.order_date) = 2023
+    GROUP BY g.game_id
+    ORDER BY revenue DESC
+    LIMIT 4, 1  -- 5th most revenue-generating game
+)
+SELECT SUM(od.quantity * od.subtotal) AS total_revenue
+FROM OrderDetails od
+JOIN RankedGames rg ON od.game_id = rg.game_id;
+```
+
+
+
+flag: texsaw{247.16}
+
